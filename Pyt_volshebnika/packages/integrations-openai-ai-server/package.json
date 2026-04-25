@@ -1,0 +1,19 @@
+{
+  "name": "@wizard-path/integrations-openai-ai-server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./batch": "./src/batch/index.ts",
+    "./image": "./src/image/index.ts",
+    "./audio": "./src/audio/index.ts"
+  },
+  "dependencies": {
+    "@types/node": "^22.15.0",
+    "dotenv": "^16.4.5",
+    "openai": "^6.27.0",
+    "p-limit": "^7.3.0",
+    "p-retry": "^7.1.1"
+  }
+}

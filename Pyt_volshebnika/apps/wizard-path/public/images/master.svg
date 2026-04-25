@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 600" fill="none" style="background:transparent">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="robe" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a1f0a"/>
+      <stop offset="100%" stop-color="#1a1208"/>
+    </linearGradient>
+    <linearGradient id="robeShine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c9a227" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#7a5c10" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient glow -->
+  <ellipse cx="150" cy="180" rx="120" ry="140" fill="url(#glow)"/>
+
+  <!-- Robe body -->
+  <path d="M90 280 Q60 320 40 480 Q80 540 150 560 Q220 540 260 480 Q240 320 210 280 Z" fill="url(#robe)"/>
+  <path d="M90 280 Q60 320 40 480 Q80 540 150 560 Q220 540 260 480 Q240 320 210 280 Z" fill="url(#robeShine)" opacity="0.5"/>
+
+  <!-- Robe trim (gold) -->
+  <path d="M150 560 Q80 540 40 480" stroke="#c9a227" stroke-width="2.5" fill="none" opacity="0.7"/>
+  <path d="M150 560 Q220 540 260 480" stroke="#c9a227" stroke-width="2.5" fill="none" opacity="0.7"/>
+  <!-- Center trim -->
+  <line x1="150" y1="285" x2="150" y2="555" stroke="#c9a227" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Shoulders -->
+  <ellipse cx="95" cy="285" rx="30" ry="18" fill="#2a1f0a"/>
+  <ellipse cx="205" cy="285" rx="30" ry="18" fill="#2a1f0a"/>
+
+  <!-- Left sleeve -->
+  <path d="M65 285 Q30 330 20 380 Q40 390 60 380 Q80 340 100 290 Z" fill="#1e1608"/>
+  <path d="M65 285 Q30 330 20 380 Q40 390 60 380 Q80 340 100 290 Z" fill="url(#robeShine)" opacity="0.3"/>
+
+  <!-- Right sleeve -->
+  <path d="M235 285 Q270 330 280 380 Q260 390 240 380 Q220 340 200 290 Z" fill="#1e1608"/>
+  <path d="M235 285 Q270 330 280 380 Q260 390 240 380 Q220 340 200 290 Z" fill="url(#robeShine)" opacity="0.3"/>
+
+  <!-- Neck -->
+  <rect x="135" y="230" width="30" height="55" rx="10" fill="#c8a882"/>
+
+  <!-- Head -->
+  <ellipse cx="150" cy="200" rx="55" ry="65" fill="#c8a882"/>
+
+  <!-- Eye shadows -->
+  <ellipse cx="128" cy="195" rx="14" ry="10" fill="#a07855" opacity="0.3"/>
+  <ellipse cx="172" cy="195" rx="14" ry="10" fill="#a07855" opacity="0.3"/>
+
+  <!-- Eyes -->
+  <ellipse cx="128" cy="195" rx="9" ry="7" fill="#1a0f05"/>
+  <ellipse cx="172" cy="195" rx="9" ry="7" fill="#1a0f05"/>
+  <circle cx="131" cy="193" r="2.5" fill="white" opacity="0.8"/>
+  <circle cx="175" cy="193" r="2.5" fill="white" opacity="0.8"/>
+
+  <!-- Eyebrows -->
+  <path d="M118 184 Q128 179 138 182" stroke="#5a3e1b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M162 182 Q172 179 182 184" stroke="#5a3e1b" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M148 205 Q144 218 148 222 Q152 222 156 218 Q152 205 148 205" fill="#b8926a" opacity="0.6"/>
+
+  <!-- Mouth -->
+  <path d="M135 238 Q150 248 165 238" stroke="#7a4e2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Beard -->
+  <path d="M105 230 Q110 270 130 290 Q150 300 170 290 Q190 270 195 230 Q175 250 150 255 Q125 250 105 230 Z" fill="#4a3520" opacity="0.9"/>
+  <path d="M125 255 Q135 285 150 295 Q165 285 175 255 Q163 270 150 273 Q137 270 125 255 Z" fill="#3a2818"/>
+
+  <!-- Mustache -->
+  <path d="M128 235 Q140 240 150 237 Q160 240 172 235" stroke="#3a2818" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Hat -->
+  <path d="M80 170 Q85 120 150 50 Q215 120 220 170 Z" fill="#1a1208"/>
+  <path d="M80 170 Q85 120 150 50 Q215 120 220 170 Z" fill="url(#robeShine)" opacity="0.4"/>
+  <!-- Hat brim -->
+  <ellipse cx="150" cy="172" rx="80" ry="20" fill="#1e1608"/>
+  <ellipse cx="150" cy="172" rx="80" ry="20" fill="url(#robeShine)" opacity="0.3"/>
+  <!-- Hat band -->
+  <path d="M80 165 Q150 150 220 165" stroke="#c9a227" stroke-width="3" fill="none" opacity="0.8"/>
+
+  <!-- Staff (left hand) -->
+  <line x1="22" y1="370" x2="45" y2="595" stroke="#4a3010" stroke-width="8" stroke-linecap="round"/>
+  <!-- Staff orb -->
+  <circle cx="22" cy="365" r="15" fill="#1a0a2e" stroke="#c9a227" stroke-width="2"/>
+  <circle cx="22" cy="365" r="8" fill="#4a2090" opacity="0.8"/>
+  <circle cx="18" cy="361" r="3" fill="white" opacity="0.5"/>
+
+  <!-- Stars/magic particles -->
+  <circle cx="55" cy="120" r="2" fill="#c9a227" opacity="0.7"/>
+  <circle cx="250" cy="140" r="1.5" fill="#c9a227" opacity="0.5"/>
+  <circle cx="40" cy="200" r="1" fill="#c9a227" opacity="0.4"/>
+  <circle cx="270" cy="90" r="2.5" fill="#c9a227" opacity="0.6"/>
+  <circle cx="30" cy="320" r="1.5" fill="#c9a227" opacity="0.3"/>
+</svg>

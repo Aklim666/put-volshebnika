@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+  --font-sans: 'Cormorant Garamond', serif;
+  --font-display: 'Cinzel', serif;
+
+  --color-background: hsl(250 24% 9%);
+  --color-foreground: hsl(45 29% 85%);
+  --color-primary: hsl(43 74% 49%);
+  --color-primary-foreground: hsl(250 24% 9%);
+  --color-secondary: hsl(250 14% 16%);
+  --color-secondary-foreground: hsl(45 29% 85%);
+  --color-muted: hsl(250 14% 16%);
+  --color-muted-foreground: hsl(45 10% 60%);
+  --color-accent: hsl(280 65% 60%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  --color-border: hsl(43 74% 49% / 0.3);
+  --color-ring: hsl(43 74% 49%);
+  --color-card: hsl(250 20% 12% / 0.8);
+  --color-card-foreground: hsl(45 29% 85%);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased font-sans overflow-hidden selection:bg-primary/30;
+    background-image: radial-gradient(circle at 50% 50%, rgba(20, 15, 30, 1) 0%, rgba(5, 3, 10, 1) 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-wider;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+
+  .magical-border {
+    position: relative;
+  }
+  .magical-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.8), transparent);
+    z-index: -1;
+    border-radius: inherit;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+  .magical-border:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Убираем мигающий текстовый курсор из input/textarea */
+input, textarea {
+  caret-color: transparent !important;
+}
+
+/* При необходимости показываем курсор только в полях ввода */
+input:focus, textarea:focus {
+  caret-color: auto !important;
+}
+
+/* Отключаем анимацию мигания курсора */
+@keyframes caret-blink {
+  0%, 100% { opacity: 0; }
+}
+
+.animate-caret-blink,
+[class*="animate-caret"] {
+  animation: none !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* Глобально убираем любой видимый курсор */
+body {
+  caret-color: transparent !important;
+}

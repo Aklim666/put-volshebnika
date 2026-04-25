@@ -1,0 +1,325 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: Wizard Path Game API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: auth
+    description: Authentication operations
+  - name: player
+    description: Player operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /auth/register:
+    post:
+      operationId: registerPlayer
+      tags: [auth]
+      summary: Register a new player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "200":
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "409":
+          description: Player already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/login:
+    post:
+      operationId: loginPlayer
+      tags: [auth]
+      summary: Login existing player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Player not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /player/{playerId}:
+    get:
+      operationId: getPlayer
+      tags: [player]
+      summary: Get player profile
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Player profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerProfile"
+        "404":
+          description: Player not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /player/{playerId}/stats:
+    put:
+      operationId: updatePlayerStats
+      tags: [player]
+      summary: Update player stats after quest
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStatsRequest"
+      responses:
+        "200":
+          description: Updated player stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerProfile"
+        "404":
+          description: Player not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /player/{playerId}/avatar:
+    put:
+      operationId: updatePlayerAvatar
+      tags: [player]
+      summary: Update player avatar
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAvatarRequest"
+      responses:
+        "200":
+          description: Avatar updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerProfile"
+
+  /player/{playerId}/reset:
+    post:
+      operationId: resetPlayerQuests
+      tags: [player]
+      summary: Reset player quests for replay
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Quests reset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerProfile"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    AuthRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - password
+
+    AuthResponse:
+      type: object
+      properties:
+        playerId:
+          type: integer
+        name:
+          type: string
+        avatar:
+          type: string
+        compassion:
+          type: integer
+        courage:
+          type: integer
+        wisdom:
+          type: integer
+        ambition:
+          type: integer
+        principle:
+          type: integer
+        completedQuests:
+          type: array
+          items:
+            type: integer
+        archetypeEarned:
+          type: string
+          nullable: true
+      required:
+        - playerId
+        - name
+        - avatar
+        - compassion
+        - courage
+        - wisdom
+        - ambition
+        - principle
+        - completedQuests
+
+    PlayerProfile:
+      type: object
+      properties:
+        playerId:
+          type: integer
+        name:
+          type: string
+        avatar:
+          type: string
+        compassion:
+          type: integer
+        courage:
+          type: integer
+        wisdom:
+          type: integer
+        ambition:
+          type: integer
+        principle:
+          type: integer
+        completedQuests:
+          type: array
+          items:
+            type: integer
+        archetypeEarned:
+          type: string
+          nullable: true
+        previousArchetypes:
+          type: array
+          items:
+            type: string
+      required:
+        - playerId
+        - name
+        - avatar
+        - compassion
+        - courage
+        - wisdom
+        - ambition
+        - principle
+        - completedQuests
+
+    UpdateStatsRequest:
+      type: object
+      properties:
+        compassionDelta:
+          type: integer
+        courageDelta:
+          type: integer
+        wisdomDelta:
+          type: integer
+        ambitionDelta:
+          type: integer
+        principleDelta:
+          type: integer
+        questId:
+          type: integer
+        archetypeEarned:
+          type: string
+          nullable: true
+      required:
+        - compassionDelta
+        - courageDelta
+        - wisdomDelta
+        - ambitionDelta
+        - principleDelta
+        - questId
+
+    UpdateAvatarRequest:
+      type: object
+      properties:
+        avatar:
+          type: string
+      required:
+        - avatar
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message

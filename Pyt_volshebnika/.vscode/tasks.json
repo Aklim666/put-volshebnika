@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Запустить API Сервер",
+      "type": "shell",
+      "command": "pnpm --filter @workspace/api-server run dev",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*tsx.*",
+          "endsPattern": "^.*Server listening.*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "wizard-path"
+      }
+    },
+    {
+      "label": "Запустить Игру (фронтенд)",
+      "type": "shell",
+      "command": "pnpm --filter @workspace/wizard-path run dev",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*vite.*",
+          "endsPattern": "^.*Local:.*"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "wizard-path"
+      },
+      "dependsOn": "Запустить API Сервер"
+    },
+    {
+      "label": "▶️ Запустить всё",
+      "dependsOn": [
+        "Запустить API Сервер",
+        "Запустить Игру (фронтенд)"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Установить зависимости",
+      "type": "shell",
+      "command": "pnpm install",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}
